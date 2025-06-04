@@ -71,14 +71,14 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold text-blue-900 mb-2">MediCare Assistant</h1>
-          <p className="text-blue-600">Your AI health companion for common medical questions</p>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">MediCare Assistant</h1>
+          <p className="text-gray-600">Your AI health companion for common medical questions</p>
         </div>
 
-        <Alert className="mb-6 border-amber-200 bg-amber-50">
+        <Alert className="mb-6 border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50">
           <AlertTriangle className="h-4 w-4 text-amber-600" />
           <AlertDescription className="text-amber-800">
             <strong>Medical Disclaimer:</strong> This chatbot provides general health information only. 
@@ -87,8 +87,8 @@ const Index = () => {
           </AlertDescription>
         </Alert>
 
-        <Card className="h-[600px] flex flex-col shadow-lg">
-          <CardHeader className="bg-blue-600 text-white rounded-t-lg">
+        <Card className="h-[600px] flex flex-col shadow-xl border-0 bg-gradient-to-br from-white to-gray-50">
+          <CardHeader className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-t-lg">
             <CardTitle className="flex items-center gap-2">
               <Bot className="h-6 w-6" />
               Medical Assistant
@@ -97,7 +97,7 @@ const Index = () => {
 
           <CardContent className="flex-1 overflow-hidden p-0">
             <div className="h-full flex flex-col">
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50/50 to-white">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -107,16 +107,16 @@ const Index = () => {
                   >
                     <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
                       message.sender === 'user' 
-                        ? 'bg-blue-100 text-blue-600' 
-                        : 'bg-green-100 text-green-600'
+                        ? 'bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600' 
+                        : 'bg-gradient-to-br from-green-100 to-emerald-100 text-green-600'
                     }`}>
                       {message.sender === 'user' ? <User size={16} /> : <Bot size={16} />}
                     </div>
                     
                     <div className={`max-w-[70%] rounded-lg p-3 ${
                       message.sender === 'user'
-                        ? 'bg-blue-600 text-white rounded-br-none'
-                        : 'bg-gray-100 text-gray-800 rounded-bl-none'
+                        ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-br-none shadow-lg'
+                        : 'bg-gradient-to-br from-gray-100 to-gray-50 text-gray-800 rounded-bl-none shadow-md'
                     }`}>
                       <p className="whitespace-pre-wrap">{message.text}</p>
                       <span className={`text-xs mt-1 block ${
@@ -130,14 +130,14 @@ const Index = () => {
 
                 {isTyping && (
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 text-green-600 flex items-center justify-center">
                       <Bot size={16} />
                     </div>
-                    <div className="bg-gray-100 rounded-lg rounded-bl-none p-3">
+                    <div className="bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg rounded-bl-none p-3 shadow-md">
                       <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                       </div>
                     </div>
                   </div>
@@ -146,20 +146,20 @@ const Index = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              <div className="border-t p-4">
+              <div className="border-t p-4 bg-gradient-to-r from-gray-50 to-white">
                 <div className="flex gap-2">
                   <Input
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Describe your symptoms or ask a health question..."
-                    className="flex-1"
+                    className="flex-1 border-gray-200 focus:ring-2 focus:ring-blue-500"
                     disabled={isTyping}
                   />
                   <Button 
                     onClick={handleSendMessage} 
                     disabled={!inputMessage.trim() || isTyping}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg"
                   >
                     <Send size={16} />
                   </Button>
